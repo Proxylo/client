@@ -1,0 +1,59 @@
+version: "3.8"
+
+services:
+    php:
+        build:
+            context: ..
+            dockerfile: docker/php/dockerfile
+        image: ${COMPOSE_PROJECT_NAME}_php:latest
+        container_name: ${COMPOSE_PROJECT_NAME}_php
+        volumes:
+            - ..:/var/www/html
+        depends_on:
+            - mysql
+            - node
+
+    node:
+        build:
+            context: ..
+            dockerfile: docker/node/dockerfile
+        image: ${COMPOSE_PROJECT_NAME}_node:latest
+        container_name: ${COMPOSE_PROJECT_NAME}_node
+        ports:
+            - "5173:5173"
+        volumes:
+            - ..:/var/www/html
+
+    nginx:
+        build:
+            context: ..
+            dockerfile: docker/nginx/dockerfile
+        image: ${COMPOSE_PROJECT_NAME}_nginx:latest
+        container_name: ${COMPOSE_PROJECT_NAME}_nginx
+        ports:
+            - "${NGINX_PORT}:80"
+        depends_on:
+            - php
+            - node
+
+    mysql:
+        build:
+            context: ..
+            dockerfile: docker/mysql/dockerfile
+        image: ${COMPOSE_PROJECT_NAME}_mysql:latest
+        container_name: ${COMPOSE_PROJECT_NAME}_mysql
+        volumes:
+            - ./mysql/data:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+    adminer:
+        image: adminer
+        container_name: ${COMPOSE_PROJECT_NAME}_adminer
+        ports:
+            - "${ADMINER_PORT}:8080"
+        depends_on:
+            - mysql
