@@ -1,6 +1,8 @@
 # Welcome to Syntoria Laravel Base! 🚀
 
-Transforming Businesses with Digital Solutions 🌐
+A starter pack for you laravel application, including react and tailwind with dockerization!
+
+## Transforming Businesses with Digital Solutions 🌐
 
 Syntoria is a cutting-edge digital solutions company dedicated to transforming businesses through innovative application development and seamless system integration. Our expertise spans a diverse range of technologies, including Elixir, PHP, TypeScript, and Python, allowing us to craft bespoke solutions tailored to your unique needs.
 
