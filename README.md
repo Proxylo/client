@@ -1,7 +1,3 @@
-Sure, here's a playful and informative README for your Syntoria Laravel Base template:
-
----
-
 # Welcome to Syntoria Laravel Base! 🚀
 
 Transforming Businesses with Digital Solutions 🌐
