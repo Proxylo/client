@@ -12,8 +12,10 @@ export default defineConfig({
     ],
     server: {
         host: true,
+        port: +process.env.VITE_PORT,
         hmr: {
-            host: 'localhost'
+            host: 'localhost',
+            port: +process.env.VITE_PORT
         },
         watch: {
             usePolling: true,

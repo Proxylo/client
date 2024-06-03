@@ -4,6 +4,6 @@ WORKDIR /var/www/html
 
 COPY . .
 
-EXPOSE 5173
+EXPOSE ${VITE_PORT}
 
 CMD npm install && npm run dev

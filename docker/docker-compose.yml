@@ -20,9 +20,11 @@ services:
         image: ${COMPOSE_PROJECT_NAME}_node:latest
         container_name: ${COMPOSE_PROJECT_NAME}_node
         ports:
-            - "5173:5173"
+            - "${VITE_PORT}:${VITE_PORT}"
         volumes:
             - ..:/var/www/html
+        environment:
+            VITE_PORT: ${VITE_PORT}
 
     nginx:
         build:
